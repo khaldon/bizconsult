@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content  %}
+<div class="container-xxl bg-primary page-header">
+    <div class="container text-center">
+        <h1 class="text-white animated zoomIn mb-3">Testimonial</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center">
+                <li class="breadcrumb-item"><a class="text-white" href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Testimonial</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+</div>
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <div class="d-inline-block border rounded-pill text-primary px-4 mb-3">Testimonial</div>
+            <h2 class="mb-5">What Our Clients Say!</h2>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+            {% for form in object_list  %}
+            <div class="testimonial-item rounded p-4">
+                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                <p>{{form.text}}</p>
+                <div class="d-flex align-items-center"> 
+                    <img class="img-fluid flex-shrink-0 rounded-circle" src="{{form.client_image.url}}">
+                    <div class="ps-3">
+                        <h6 class="mb-1">{{form.client_name}}</h6>
+                        <small>{{form.profession}}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content  %}
