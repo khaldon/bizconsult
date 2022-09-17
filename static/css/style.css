@@ -26,9 +26,8 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-#message, #message_footer{
+#message_top, #message_footer{
     color:red; 
-    margin: 30px;
 }
 /*** Spinner ***/
 #spinner {

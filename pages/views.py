@@ -38,7 +38,11 @@ class ContactView(FormView):
 
     def form_valid(self, form):
         form.save()
-        return super().form_valid(form)
+        return JsonResponse({"valid": "Thank you for contacting us"})
+    def form_invalid(self, form):
+        return JsonResponse({"invalid": form.errors })
+
+        # return super().form_valid(form)
 
 
 class TestimonialView(ListView):
@@ -73,7 +77,10 @@ class RequestQuoteView (FormView):
 
     def form_valid(self, form):
         form.save()
-        return super().form_valid(form)
+        return JsonResponse({'valid':"Thank you for submitting"})
+    
+    def form_invalid(self, form):
+        return JsonResponse({'invalid':form.errors})
 
 def page_not_found_view(request, exception):
     return render(request, '404.html', status=404)

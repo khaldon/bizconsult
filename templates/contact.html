@@ -13,7 +13,7 @@
             {% endif %}
             <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.3s">
                 {% comment %} <p class="text-center mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p> {% endcomment %}
-                <form method='post'>
+                <form method='post' id="contact_form">
                     {% csrf_token %}
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -47,6 +47,7 @@
                         <div class="col-12">
                             <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
                         </div>
+                        <div id="contact_message"></div>
                     </div>
                 </form>
             </div>
