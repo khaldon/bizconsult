@@ -40,5 +40,17 @@ class RequestQuote(models.Model):
         ('tax','Tax Consultancy')]
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    service = models.CharField(max_length=9,choices=CHOICES)
+    service = models.CharField(max_length=9,choices=CHOICES, default='financial')
     comment = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class Service(models.Model):
+    title = models.CharField(max_length=190)
+    content = models.TextField()
+
+    def __str__(self):
+        return self.title
+
