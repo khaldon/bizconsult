@@ -50,7 +50,7 @@ class TestimonialView(ListView):
     template_name = 'testimonial.html'
 
 
-class Service(ListView):
+class ServiceView(ListView):
     model = Service
     template_name = 'service.html'
    
@@ -59,8 +59,6 @@ class Service(ListView):
 class AboutView(TemplateView):
     template_name = 'about.html'
 
-class ServiceView(TemplateView):
-    template_name = 'service.html'
 
 class FeaturesView(TemplateView):
     template_name = 'features.html'

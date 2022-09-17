@@ -15,14 +15,13 @@ function handleSubmitHomePage(postForm, url, method, messagePreview) {
         })
         .then(response => response.json())
         .then(data => {
-            document.querySelector('.loader').style.display = 'block';
+            // document.querySelector('.loader').style.display = 'block';
             postForm.reset();
             let message = data['message']
             messagePreview.innerHTML = message
             if(message == 'Thank you for subscribing'){
-                setTimeout(() => {  messagePreview.style.display = 'none'; }, 2500);
+                // setTimeout(() => {  messagePreview.style.display = 'none'; }, 2500);
             }else{ messagePreview.style.display = 'block'}
-            document.querySelector('.loader').style.display = 'none';
 
         })
         .catch((error) => {
@@ -55,7 +54,7 @@ function handleSubmitContactPage(postForm, url, method){
         .then(data => {
             if (data['valid'] == 'Thank you for contacting us'){
                 contactMessage.innerHTML = data['valid']
-                setTimeout(() => {  contactMessage.style.display = 'none'; }, 2500);
+                // setTimeout(() => {  contactMessage.style.display = 'none'; }, 2500);
                 contactMessage.style.fontsize = '20';
                 contactMessage.style.color = 'green';
 
@@ -81,6 +80,7 @@ if (contactForm){
 const quoteForm = document.querySelector("#quote_form")
 let quoteMessage = document.querySelector("#quote_message")
 function handleSubmitQoutePage(postForm, url, method, quoteMessage){
+    postForm.addEventListener("submit", e=>{
     e.preventDefault();
     formData = new FormData(postForm);
     fetch(url, {
@@ -89,24 +89,24 @@ function handleSubmitQoutePage(postForm, url, method, quoteMessage){
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data)
         if (data['valid'] == 'Thank you for submitting'){
            
             quoteMessage.innerHTML = data['valid']
-            setTimeout(() => {  quoteMessage.style.display = 'none'; }, 2500);
+            // setTimeout(() => {  quoteMessage.style.display = 'none'; }, 2500);
             quoteMessage.style.fontsize = '20';
             quoteMessage.style.color = 'green';
         }else{
+            console.log(data['invalid']['email']['0'])
             quoteMessage.innerHTML = data['invalid']['email']['0']
             quoteMessage.style.fontsize = '20';
             quoteMessage.style.color = 'red';
         }
-      
     })
     .catch((error) => {
         console.log('Error', error);
     });
+})
 }
 if (quoteForm){
-    handleSubmitContactPage(quoteForm, '', 'post', quoteMessage)
+    handleSubmitQoutePage(quoteForm, '', 'post', quoteMessage)
 }
