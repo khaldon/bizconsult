@@ -6,10 +6,17 @@ const messageTopPreviewer = document.querySelector("#message")
 const messageFooterPreviewer  = document.querySelector("#message_footer")
 
 function handleSubmitHomePage(postForm, url, method, messagePreview) {
+    const csrf = document.querySelector('[name=csrfmiddlewaretoken]')
     postForm.addEventListener("submit", e => {
         e.preventDefault();
     formData = new FormData(postForm);
+
     fetch(url, {
+            headers:{
+                'X-requested-With':'XMLHttpRequest',
+                'Content-Type':'application/json',
+                'X-CSRFToken':csrf
+            },
             method: method,
             body: formData,
         })
@@ -31,11 +38,12 @@ function handleSubmitHomePage(postForm, url, method, messagePreview) {
 
 } 
 // check all the elements forms if not None excute the code below 
-if (EmailNewsletterTop){
-    handleSubmitHomePage(EmailNewsletterTop, '', 'post', messageTopPreviewer)
-}
+// if (EmailNewsletterTop){
+//     handleSubmitHomePage(EmailNewsletterTop, '', 'post', messageTopPreviewer)
+// }
+urlCurrentPage  = window.location.href;
 if (EmailNewsletterFooter){
-    handleSubmitHomePage(EmailNewsletterFooter, '', 'post', messageFooterPreviewer)
+    handleSubmitHomePage(EmailNewsletterFooter, '' , 'post', messageFooterPreviewer)
 }
 
 // AJAX for contact page 
